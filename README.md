@@ -4,10 +4,10 @@
 
 Этот проект представляет собой Node.js сервис, разработанный для автоматизации двух ключевых задач:
 
-1.  **Регулярное получение информации о тарифах Wildberries (WB)**: Сервис подключается к API Wildberries, получает актуальные данные о тарифах на доставку и хранение коробов, и сохраняет их в локальной базе данных PostgreSQL. Данные обновляются ежедневно, при этом существующие записи обновляются, а новые добавляются.
+1.  **Регулярное получение информации о тарифах Wildberries (WB)**: Сервис подключается к API Wildberries, получает актуальные данные о тарифах на доставку и хранение коробов, и сохраняет их в базе данных PostgreSQL. Данные обновляются ежедневно, при этом существующие записи обновляются, а новые добавляются.
 2.  **Регулярное обновление Google Таблиц**: Полученные и сохраненные в базе данных актуальные тарифы автоматически экспортируются в указанные Google Таблицы, обеспечивая доступность свежих данных для анализа или других целей.
 
-Проект использует Docker Compose для легкого развертывания базы данных PostgreSQL и самого Node.js приложения, а также `node-cron` для планирования задач.
+Проект использует Docker Compose для развертывания базы данных PostgreSQL и самого Node.js приложения, а также node-cron для планирования задач.
 
 ## Задачи Сервиса
 
@@ -33,8 +33,7 @@
 ### 1. Клонирование Репозитория
 
 ```bash
-git clone <URL_ВАШЕГО_РЕПОЗИТОРИЯ>
-cd <НАЗВАНИЕ_ВАШЕЙ_ПАПКИ_ПРОЕКТА>
+git clone https://github.com/AnonimusZ6/wb_service.git
 ```
 
 ### 2. Настройка Переменных Окружения (`.env`)
@@ -88,10 +87,6 @@ WB_API_KEY=ВАШ_WB_API_КЛЮЧ_ЗДЕСЬ
 # 6. Скачайте JSON-файл.
 # 7. Откройте скачанный JSON-файл и скопируйте его содержимое.
 # 8. **Важно**: Преобразуйте скопированный JSON в ОДНУ СТРОКУ, заменив все символы новой строки (`\n`) на `\\n`.
-#    Пример (для Linux/macOS):
-#    cat your-service-account-key.json | tr -d '\n' | sed 's/"/\\"/g'
-#    Или используйте онлайн-инструмент для форматирования JSON в одну строку с экранированием.
-#    Затем вставьте полученную строку сюда.
 #
 # Пример правильного формата (замените на ваш реальный JSON):
 # GOOGLE_CREDENTIALS={"type":"service_account","project_id":"your-project-id","private_key_id":"your-private-key-id","private_key":"-----BEGIN PRIVATE KEY-----\\nYOUR_PRIVATE_KEY_CONTENT\\n-----END PRIVATE KEY-----\\n","client_email":"your-service-account-email@your-project-id.iam.gserviceaccount.com","client_id":"your-client-id","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_x509_cert_url":"https://www.googleapis.com/robot/v1/metadata/x509/your-service-account-email%40your-project-id.iam.gserviceaccount.com","universe_domain":"googleapis.com"}
@@ -105,7 +100,7 @@ GOOGLE_CREDENTIALS=ВАШ_GOOGLE_КРЕДЕНЦИАЛЫ_В_ОДНОЙ_СТРОК
 # Чтобы найти ID таблицы, откройте её в браузере. ID находится в URL:
 # https://docs.google.com/spreadsheets/d/ВАШ_ID_ТАБЛИЦЫ/edit
 #
-# Важно: Убедитесь, что сервисный аккаунт (client_email из GOOGLE_CREDENTIALS)
+# Убедитесь, что сервисный аккаунт (client_email из GOOGLE_CREDENTIALS)
 # имеет права РЕДАКТОРА на эти таблицы.
 GOOGLE_SHEET_IDS=ID_ТАБЛИЦЫ_1,ID_ТАБЛИЦЫ_2,ID_ТАБЛИЦЫ_3
 
@@ -119,5 +114,10 @@ TARIFFS_UPDATE_CRON=0 * * * *
 
 # Cron-выражение для обновления Google Таблиц.
 # По умолчанию: "0 * * * *" (каждый час в 0 минут).
-# Пример для каждых 15 секунд: "*/15 * * * * *"
 SHEETS_UPDATE_CRON=0 * * * *
+
+
+
+### 3. Результат запуска скрипта
+![Dashboard]("https://github.com/user-attachments/assets/e8294d13-8d24-4a20-880c-8b4fe154becd")
+*Главный дашборд с ключевыми метриками и графиками*
