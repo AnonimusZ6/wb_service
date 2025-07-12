@@ -30,6 +30,7 @@
 
 Для запуска проекта вам потребуется установленный [Docker](https://www.docker.com/get-started/) и [Docker Compose](https://docs.docker.com/compose/install/).
 
+
 ### 1. Клонирование Репозитория
 
 ```bash
@@ -115,9 +116,9 @@ TARIFFS_UPDATE_CRON=0 * * * *
 # Cron-выражение для обновления Google Таблиц.
 # По умолчанию: "0 * * * *" (каждый час в 0 минут).
 SHEETS_UPDATE_CRON=0 * * * *
-
+```
 
 
 ### 3. Результат запуска скрипта
-![Dashboard]("https://github.com/user-attachments/assets/e8294d13-8d24-4a20-880c-8b4fe154becd")
-*Главный дашборд с ключевыми метриками и графиками*
+![GoogleSheets]("https://github.com/user-attachments/assets/e8294d13-8d24-4a20-880c-8b4fe154becd")
+*Изображение Google sheets с тарифами вб*
