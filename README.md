@@ -118,7 +118,12 @@ TARIFFS_UPDATE_CRON=0 * * * *
 SHEETS_UPDATE_CRON=0 * * * *
 ```
 
+### 3. Запуск Docker Compose
+```bash
+docker compose up
+```
 
-### 3. Результат запуска скрипта
+
+### 4. Результат запуска скрипта
 ![GoogleSheets](https://github.com/user-attachments/assets/e8294d13-8d24-4a20-880c-8b4fe154becd)
 *Изображение Google sheets с тарифами вб*
