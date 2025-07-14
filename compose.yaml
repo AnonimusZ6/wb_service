@@ -59,20 +59,17 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    # Load environment variables from .env file
     env_file:
       - .env
 
     environment:
-      # These are still needed to override the default values in env.ts
-      # and ensure the app connects to the 'postgres' service within Docker network
       POSTGRES_HOST: postgres
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       APP_PORT: ${APP_PORT}
-      NODE_ENV: production # Keep this explicitly set for production build
+      NODE_ENV: production
 
     ports:
       - ${APP_PORT}:${APP_PORT}
